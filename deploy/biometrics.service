@@ -1,0 +1,16 @@
+[Unit]
+Description=Biometrics Tracker (FastAPI + frontend)
+After=network.target
+
+[Service]
+Type=simple
+User=biometrics
+Group=biometrics
+WorkingDirectory=/opt/biometrics/backend
+EnvironmentFile=/opt/biometrics/.env
+ExecStart=/opt/biometrics/backend/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
